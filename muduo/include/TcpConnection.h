@@ -47,20 +47,20 @@ class TcpConnection : boost::noncopyable,
   ///
   /// User should not create this object.
   TcpConnection(EventLoop* loop,
-                const string& name,
+                const mstring& name,
                 int sockfd,
                 const InetAddress& localAddr,
                 const InetAddress& peerAddr);
   ~TcpConnection();
 
   EventLoop* getLoop() const { return loop_; }
-  const string& name() const { return name_; }
+  const mstring& name() const { return name_; }
   const InetAddress& localAddress() const { return localAddr_; }
   const InetAddress& peerAddress() const { return peerAddr_; }
   bool connected() const { return state_ == kConnected; }
   // return true if success.
   bool getTcpInfo(struct tcp_info*) const;
-  string getTcpInfoString() const;
+  mstring getTcpInfoString() const;
 
   // void send(string&& message); // C++11
   void send(const void* message, int len);
@@ -125,7 +125,7 @@ class TcpConnection : boost::noncopyable,
   void setState(StateE s) { state_ = s; }
 
   EventLoop* loop_;
-  const string name_;
+  const mstring name_;
   StateE state_;  // FIXME: use atomic variable
   // we don't expose those classes to client.
   boost::scoped_ptr<Socket> socket_;

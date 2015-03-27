@@ -46,12 +46,12 @@ class TcpServer : boost::noncopyable
   //TcpServer(EventLoop* loop, const InetAddress& listenAddr);
   TcpServer(EventLoop* loop,
             const InetAddress& listenAddr,
-            const string& nameArg,
+            const mstring& nameArg,
             Option option = kNoReusePort);
   ~TcpServer();  // force out-line dtor, for scoped_ptr members.
 
-  const string& hostport() const { return hostport_; }
-  const string& name() const { return name_; }
+  const mstring& hostport() const { return hostport_; }
+  const mstring& name() const { return name_; }
   EventLoop* getLoop() const { return loop_; }
 
   /// Set the number of threads for handling input.
@@ -100,11 +100,11 @@ class TcpServer : boost::noncopyable
   /// Not thread safe, but in loop
   void removeConnectionInLoop(const TcpConnectionPtr& conn);
 
-  typedef std::map<string, TcpConnectionPtr> ConnectionMap;
+  typedef std::map<mstring, TcpConnectionPtr> ConnectionMap;
 
   EventLoop* loop_;  // the acceptor loop
-  const string hostport_;
-  const string name_;
+  const mstring hostport_;
+  const mstring name_;
   boost::scoped_ptr<Acceptor> acceptor_; // avoid revealing Acceptor
   boost::shared_ptr<EventLoopThreadPool> threadPool_;
   ConnectionCallback connectionCallback_;

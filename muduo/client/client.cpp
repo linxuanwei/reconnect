@@ -8,6 +8,7 @@ TClient:: TClient(muduo::net::EventLoop* loop,const muduo::net::InetAddress& ser
 	client_.setConnectionCallback(boost::bind(&TClient::onConnection, this, _1));
 	client_.setMessageCallback(boost::bind(&TClient::onMessage, this, _1, _2));
 	client_.enableRetry();
+	loop->runEvery(60.0,boost::bind(&TClient::OneMinuteLoop,this));
 }
 
 void TClient::connect()
@@ -24,6 +25,11 @@ void TClient::onConnection(const TcpConnectionPtr& conn)
 }
 
 void TClient::onMessage(const TcpConnectionPtr& conn, Buffer* buf)
+{
+
+}
+
+void TClient::OneMinuteLoop()
 {
 
 }

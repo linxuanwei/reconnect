@@ -28,6 +28,7 @@ class TClient
 	public:
 		TClient(muduo::net::EventLoop* loop,const muduo::net::InetAddress& listenAddr);
 		void connect();
+		void OneMinuteLoop();
 	private:
 		void onConnection(const muduo::net::TcpConnectionPtr& conn);
 		void onMessage(const muduo::net::TcpConnectionPtr& conn,muduo::net::Buffer* buf);

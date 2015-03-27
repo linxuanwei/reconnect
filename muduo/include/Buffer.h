@@ -156,15 +156,15 @@ class Buffer : public muduo::copyable
     writerIndex_ = kCheapPrepend;
   }
 
-  string retrieveAllAsString()
+  mstring retrieveAllAsString()
   {
     return retrieveAsString(readableBytes());;
   }
 
-  string retrieveAsString(size_t len)
+  mstring retrieveAsString(size_t len)
   {
     assert(len <= readableBytes());
-    string result(peek(), len);
+    mstring result(peek(), len);
     retrieve(len);
     return result;
   }

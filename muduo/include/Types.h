@@ -22,7 +22,7 @@ namespace muduo
 #ifdef MUDUO_STD_STRING
 using std::string;
 #else  // !MUDUO_STD_STRING
-typedef __gnu_cxx::__sso_string string;
+typedef __gnu_cxx::__sso_string mstring;
 #endif
 
 // Taken from google-protobuf stubs/common.h

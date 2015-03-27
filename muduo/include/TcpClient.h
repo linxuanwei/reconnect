@@ -31,7 +31,7 @@ class TcpClient : boost::noncopyable
   // TcpClient(EventLoop* loop, const string& host, uint16_t port);
   TcpClient(EventLoop* loop,
             const InetAddress& serverAddr,
-            const string& name);
+            const mstring& name);
   ~TcpClient();  // force out-line dtor, for scoped_ptr members.
 
   void connect();
@@ -80,7 +80,7 @@ class TcpClient : boost::noncopyable
 
   EventLoop* loop_;
   ConnectorPtr connector_; // avoid revealing Connector
-  const string name_;
+  const mstring name_;
   ConnectionCallback connectionCallback_;
   MessageCallback messageCallback_;
   WriteCompleteCallback writeCompleteCallback_;

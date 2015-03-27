@@ -58,7 +58,7 @@ class StringArg // copyable
     : str_(str)
   { }
 
-  StringArg(const string& str)
+  StringArg(const mstring& str)
     : str_(str.c_str())
   { }
 
@@ -90,7 +90,7 @@ class StringPiece {
   StringPiece(const unsigned char* str)
     : ptr_(reinterpret_cast<const char*>(str)),
       length_(static_cast<int>(strlen(ptr_))) { }
-  StringPiece(const string& str)
+  StringPiece(const mstring& str)
     : ptr_(str.data()), length_(static_cast<int>(str.size())) { }
 #ifndef MUDUO_STD_STRING
   StringPiece(const std::string& str)
@@ -161,11 +161,11 @@ class StringPiece {
     return r;
   }
 
-  string as_string() const {
-    return string(data(), size());
+  mstring as_string() const {
+    return mstring(data(), size());
   }
 
-  void CopyToString(string* target) const {
+  void CopyToString(mstring* target) const {
     target->assign(ptr_, length_);
   }
 
